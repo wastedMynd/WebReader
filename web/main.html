@@ -1,0 +1,420 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Text To Speech</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="/main.js"></script>
+    </head>
+    <body>
+        <textarea id="main_text_area"
+                  onkeyup="show_or_hide_tts_control_area()"
+                  onkeydown="show_or_hide_tts_control_area()"
+                  placeholder="Type Text Here...and Select a Voice, and then Press 'Read'...">
+        </textarea>
+        <br/>
+        <box id="tts_control_area">
+            <select id="voices" onchange="on_voice_selected()">
+                <optgroup class="gender" label="Male Voices">
+                    
+                    <optgroup class="languages" label="Arabic">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="ar-MS_OmarVoice">Omar</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="German">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        <option class="voice" value="de-DE_DieterV3Voice">Dieter</option>
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Artificial Voice">
+                        <option class="voice" value="de-DE_DieterV2Voice">Dieter</option>
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="de-DE_DieterVoice">Dieter</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="English">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        <option class="voice" value="en-US_KevinV3Voice">Kevin</option>
+                        
+                        
+                        
+                        <option class="voice" value="en-GB_JamesV3Voice">James</option>
+                        
+                        
+                        
+                        <option class="voice" value="en-US_MichaelV3Voice">Michael</option>
+                        
+                        
+                        
+                        <option class="voice" value="en-US_HenryV3Voice">Henry</option>
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Artificial Voice">
+                        <option class="voice" value="en-US_MichaelV2Voice">Michael</option>
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="en-US_MichaelVoice">Michael</option>
+                        
+                        
+                        
+                        <option class="voice" value="en-AU_CraigVoice">Craig</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Spanish">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        <option class="voice" value="es-ES_EnriqueV3Voice">Enrique</option>
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="es-ES_EnriqueVoice">Enrique</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="French">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        <option class="voice" value="fr-FR_NicolasV3Voice">Nicolas</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Italian">
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Japanese">
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Korean">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="ko-KR_HyunjunVoice">Hyunjun</option>
+                        
+                        
+                        
+                        <option class="voice" value="ko-KR_SiWooVoice">SiWoo</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Dutch">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="nl-NL_LiamVoice">Liam</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Portuguese">
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Chinese">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        <option class="voice" value="zh-CN_WangWeiVoice">WangWei</option>
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                </optgroup>
+                <optgroup class="gender" label="Female Voices">
+                    
+                    <optgroup class="languages" label="Arabic">
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="German">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="de-DE_BirgitV3Voice">Birgit</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="de-DE_ErikaV3Voice">Erika</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Artificial Voice">
+                        
+                        <option class="voice" value="de-DE_BirgitV2Voice">Birgit</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="de-DE_BirgitVoice">Birgit</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="English">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="en-US_EmilyV3Voice">Emily</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-US_OliviaV3Voice">Olivia</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-US_LisaV3Voice">Lisa</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-GB_CharlotteV3Voice">Charlotte</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-GB_KateV3Voice">Kate</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-US_AllisonV3Voice" selected>Allison
+                        </option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Artificial Voice">
+                        
+                        <option class="voice" value="en-US_LisaV2Voice">Lisa</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-US_AllisonV2Voice">Allison</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="en-US_LisaVoice">Lisa</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-US_AllisonVoice">Allison</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-GB_KateVoice">Kate</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="en-AU_MadisonVoice">Madison</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Spanish">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="es-US_SofiaV3Voice">Sofia</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="es-LA_SofiaV3Voice">Sofia</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="es-ES_LauraV3Voice">Laura</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="es-LA_SofiaVoice">Sofia</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="es-US_SofiaVoice">Sofia</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="es-ES_LauraVoice">Laura</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="French">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="fr-FR_ReneeV3Voice">Renee</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="fr-FR_ReneeVoice">Renee</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Italian">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="it-IT_FrancescaV3Voice">Francesca</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Artificial Voice">
+                        
+                        <option class="voice" value="it-IT_FrancescaV2Voice">Francesca</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="it-IT_FrancescaVoice">Francesca</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Japanese">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="ja-JP_EmiV3Voice">Emi</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="ja-JP_EmiVoice">Emi</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Korean">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="ko-KR_YoungmiVoice">Youngmi</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="ko-KR_YunaVoice">Yuna</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Dutch">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="nl-NL_EmmaVoice">Emma</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Portuguese">
+                        
+                        <optgroup class="voice_type" label="Natural Voice">
+                        
+                        <option class="voice" value="pt-BR_IsabelaV3Voice">Isabela</option>
+                        
+                        
+                        
+                        </optgroup>
+<optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="pt-BR_IsabelaVoice">Isabela</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                    <optgroup class="languages" label="Chinese">
+                        
+                        <optgroup class="voice_type" label="Computerized Voice">
+                        
+                        <option class="voice" value="zh-CN_LiNaVoice">LiNa</option>
+                        
+                        
+                        
+                        
+                        
+                        <option class="voice" value="zh-CN_ZhangJingVoice">ZhangJing</option>
+                        
+                        </optgroup>
+                        
+                    </optgroup>
+                    
+                </optgroup>
+            </select>
+            <button class="btn btn-primary btn-round" id="read_button" onclick="on_read()">Read</button>
+        </box>
+    </body>
+</html>

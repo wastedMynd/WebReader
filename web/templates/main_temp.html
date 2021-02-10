@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Text To Speech</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="/main.js"></script>
+    </head>
+    <body>
+        <textarea id="main_text_area"
+                  onkeyup="show_or_hide_tts_control_area()"
+                  onkeydown="show_or_hide_tts_control_area()"
+                  placeholder="Type Text Here...and Select a Voice, and then Press 'Read'...">
+        </textarea>
+        <br/>
+        <box id="tts_control_area">
+            <select id="voices" onchange="on_voice_selected()">
+                <optgroup class="gender" label="Male Voices">
+                    {% for index, abbreviation in enumerate(lang.get('language_abbreviations')) %}
+                    <optgroup class="languages" label="{{lang.get('languages')[index]}}">
+                        {% for vx, voice in enumerate(male_voices.get(abbreviation)) %}
+                        {{ get_voice_type_heading(male_voices.get(abbreviation)[vx - 1] if vx > 0 else None, voice) }}
+                        <option class="voice" value="{{voice.get('Name')}}">{{get_watson_display_voice(voice)}}</option>
+                        {{ apply_closing_voice_type_heading_tag(vx, male_voices.get(abbreviation)) }}
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </optgroup>
+                <optgroup class="gender" label="Female Voices">
+                    {% for index, abbreviation in enumerate(lang.get('language_abbreviations')) %}
+                    <optgroup class="languages" label="{{lang.get('languages')[index]}}">
+                        {% for vx, voice in enumerate(female_voices.get(abbreviation)) %}
+                        {{ get_voice_type_heading(female_voices.get(abbreviation)[vx - 1] if vx > 0 else None, voice) }}
+                        {% if voice.get('Name') == "en-US_AllisonV3Voice" %}
+                        <option class="voice" value="{{voice.get('Name')}}" selected>{{get_watson_display_voice(voice)}}
+                        </option>
+                        {% else %}
+                        <option class="voice" value="{{voice.get('Name')}}">{{get_watson_display_voice(voice)}}</option>
+                        {% endif %}
+                        {{ apply_closing_voice_type_heading_tag(vx, female_voices.get(abbreviation)) }}
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </optgroup>
+            </select>
+            <button class="btn btn-primary btn-round" id="read_button" onclick="on_read()">Read</button>
+        </box>
+    </body>
+</html>
